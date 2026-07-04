@@ -1,0 +1,4 @@
+dronekit
+firebase-admin
+opencv-python
+flask

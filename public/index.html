@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Drone Delivery System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/futuristic-shot-delivery-drones-flight-representing-emerging-technology-logistics_933496-15349.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+
+    <!-- Add favicon link here -->
+    <link rel="icon" type="image/png" href="favicon.ico">
+
+    <!-- Load Leaflet JS before your app.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <button onclick="showPage('mission')">Drone Mission</button>
+        <button onclick="showPage('live')">Live Feed & Tracking</button>
+    </div>
+
+    <div class="container">
+        <!-- Drone Mission Page -->
+        <div id="missionPage" class="page active">
+            <h1>🚀 Drone Delivery Mission</h1>
+
+            <div class="card">
+                <h2>📦 Delivery Information</h2>
+                <label>📍 Latitude:</label>
+                <input type="number" id="latitude" placeholder="Enter Delivery Latitude" step="any">
+
+                <label>📍 Longitude:</label>
+                <input type="number" id="longitude" placeholder="Enter Delivery Longitude" step="any">
+
+                <label>🔍 Expected QR Code:</label>
+                <input type="text" id="expectedQR" placeholder="Enter Expected QR Code">
+
+                <button onclick="deployDrone()">🚀 Deploy Drone</button>
+            </div>
+
+            <div class="card">
+                <h2>🛰 Drone Status</h2>
+                <p>Status: <span id="status">Idle</span></p>
+                <p>Scanned QR: <span id="scannedQR">None</span></p>
+            </div>
+        </div>
+
+        <!-- Live Feed & Tracking Page -->
+        <div id="livePage" class="page">
+            <h1>📡 Live Video Feed & Tracking</h1>
+
+            <div class="card">
+                <h2>🎥 Live Video Feed</h2>
+                <iframe id="videoFeed" src="http://192.168.43.82:5000/video_feed" width="100%" height="400px" frameborder="0"></iframe>
+            </div>
+
+            <div class="card">
+                <h2>📍 Real-time Drone Tracking</h2>
+                <div id="map" style="height: 600px; width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Modular version) -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <!-- Link to JavaScript File - Must be loaded after Firebase -->
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
